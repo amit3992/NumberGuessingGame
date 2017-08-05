@@ -9,6 +9,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
+#include <cstdlib>
 
 using namespace std;
 
@@ -46,7 +47,7 @@ void playGame()
       2. Set the numberOfTries => ceil (log2(range))
     */
     
-    int secretNumber = 65; // TODO: implement setSecretNumber()
+    int secretNumber = rand() % 100 + 1; // TODO: implement setSecretNumber()
     const int UPPER_BOUND = 100;
     int numberOfTries = ceil( log2(UPPER_BOUND) );
     int guess = 0;
@@ -156,16 +157,16 @@ void checkTemp(int d)
 {
     d = abs(d);
     if(d <= 5) {
-        cout << "\nBut... COLD! SO COLD!" << endl;
+        cout << "\nBut... HOT!!" << endl;
         return;
     } else if (d > 5 && d <= 10) {
-        cout << "\nBut....You are cold. " << endl;
+        cout << "\nBut....You are getting warmer!. " << endl;
         return;
     } else if (d > 10 && d <= 20) {
         cout << "\nBut...You're getting warm" << endl;
         return;
     } else {
-        cout << "\nBut...You're still hot. " << endl;
+        cout << "\nBut...You're cold10. " << endl;
     }
 }
 
