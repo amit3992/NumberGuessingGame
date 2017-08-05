@@ -23,7 +23,7 @@ int getGuess(int numberOfTries);
 int setSecretNumber();
 void displayResult(int secretNumber, int numberOfTries);
 void checkTemp(int d);
-
+int getUpperBound();
 
 
 int main() {
@@ -47,12 +47,12 @@ void playGame()
       2. Set the numberOfTries => ceil (log2(range))
     */
     
-    int secretNumber = rand() % 100 + 1; // TODO: implement setSecretNumber()
-    const int UPPER_BOUND = 100;
+    int UPPER_BOUND = getUpperBound();
+    int secretNumber = rand() % UPPER_BOUND + 1;
     int numberOfTries = ceil( log2(UPPER_BOUND) );
     int guess = 0;
     
-    cout << "\nSecret number is between 0 - 100" << endl;
+    cout << "\nSecret number is between 0 - " << UPPER_BOUND << endl;
     
     do
     {
@@ -166,7 +166,32 @@ void checkTemp(int d)
         cout << "\nBut...You're getting warm" << endl;
         return;
     } else {
-        cout << "\nBut...You're cold10. " << endl;
+        cout << "\nBut...You're cold. " << endl;
     }
+}
+
+int getUpperBound() {
+    
+    int upBound;
+    bool failure;
+    
+    do {
+        failure = false;
+        cout << "\nEnter upper-bound: " << endl;
+        cin >> upBound;
+        
+        if(cin.fail())
+        {
+            cin.clear();
+            cin.ignore(IGNORE_CHARS, '\n');
+            cout << "\nERROR! Invalid input. Try again. " << endl;
+            failure = true;
+        }
+        
+        
+    } while(failure);
+
+    return upBound;
+    
 }
 
